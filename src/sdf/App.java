@@ -7,11 +7,12 @@ import java.io.*;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Random rand = new Random();
         Integer guessNumber = rand.nextInt(100);
         Integer myGuess = 0;
+        Integer count = 0;
 
         Scanner input = new Scanner(System.in);
 
@@ -27,18 +28,18 @@ public class App {
                 BufferedOutputStream bos = new BufferedOutputStream(os);
                 DataOutputStream dos = new DataOutputStream(bos);
 
+                while (((myGuess=dis.readInt()) != guessNumber) && (count<3)) {
+                    if (myGuess < guessNumber) {
+                        System.out.println("The number you guessed is lower");
+                    } else if (myGuess > guessNumber) {
+                        System.out.println("The number you guessed is higher");
+                    } else {
+                        System.out.println("You guessed it right!");
+                        System.exit(0);
+                    }
+                }
 
-
-        while (myGuess != guessNumber) {
-            if (myGuess < guessNumber) {
-                System.out.println("The number you guessed is lower");
-            } else if (myGuess > guessNumber) {
-                System.out.println("The number you guessed is higher");
-            } else {
-                System.out.println("You guessed it right!");
-                System.exit(0);
             }
         }
-
     }
 }
